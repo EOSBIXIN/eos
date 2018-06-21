@@ -234,6 +234,20 @@ wallet_manager::sign_transaction(const chain::signed_transaction& txn, const fla
    return stxn;
 }
 
+chain::digest_type wallet_manager::get_transaction_digset(const chain::signed_transaction& txn, const chain::chain_id_type& id) {
+   check_timeout();
+   chain::signed_transaction stxn(txn);
+   bool success = false;
+   optional<digest_type> dig = stxn.sig_digest(id, stxn.context_free_data);
+   if (dig) {
+      success = true;
+   }
+   if (!success) {
+      EOS_THROW(chain::wallet_missing_pub_key_exception, "Failed to get the digset");
+   }
+   return *dig;
+}
+
 chain::signature_type
 wallet_manager::sign_digest(const chain::digest_type& digest, const public_key_type& key) {
    check_timeout();

@@ -123,6 +123,7 @@ namespace eosio { namespace client { namespace http {
    const string wallet_remove_key = wallet_func_base + "/remove_key";
    const string wallet_create_key = wallet_func_base + "/create_key";
    const string wallet_sign_trx = wallet_func_base + "/sign_transaction";
+   const string get_transaction_digset = wallet_func_base + "/get_transaction_digset";
    const string keosd_stop = "/v1/keosd/stop";
 
    FC_DECLARE_EXCEPTION( connection_exception, 1100000, "Connection Exception" );

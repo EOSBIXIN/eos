@@ -49,6 +49,12 @@ public:
    chain::signed_transaction sign_transaction(const chain::signed_transaction& txn, const flat_set<public_key_type>& keys,
                                              const chain::chain_id_type& id);
 
+   /// Get the digest of the transaction to use the SSM/HSM sign separately.
+   /// @param txn the transaction to get digset.
+   /// @param id the chain_id to sign transaction with.
+   /// @return txn digset
+   /// @throws fc::exception if corresponding private keys not found in unlocked wallets
+   chain::digest_type get_transaction_digset(const chain::signed_transaction& txn, const chain::chain_id_type& id);
 
    /// Sign digest with the private keys specified via their public keys.
    /// @param digest the digest to sign.
